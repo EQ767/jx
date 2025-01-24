@@ -14,15 +14,6 @@
           "tags": ["下载管理", "IDM", "Win"]
         },
         {
-          "title": "Fiddler开发者实用工具",
-          "function": "HTTP调试工具",
-          "txt":"Fiddler.txt",
-          "toD": "https://www.123pan.com/s/Vjqdjv-JzoVH.html",
-          "cover": "https://d585tldpucybw.cloudfront.net/sfimages/default-source/homepage/deliver.png?sfvrsn=cfc94f36_5",
-          "official": "https://www.telerik.com/fiddler",
-          "tags": ["调试工具", "HTTP", "Fiddler", "Win"]
-        },
-        {
           "title": "steamcommunity 302",
           "function": "代理程序",
           "txt":"Dogfight360.txt",
@@ -95,7 +86,7 @@
     },
     {
       "category": "开发工具与编辑器",
-      "title": "开发与Markdown编辑工具",
+      "title": "开发与编辑工具",
       "items": [
         {
           "title": "Typora免费使用",
@@ -106,6 +97,15 @@
           "official": "https://www.typora.io/",
           "tags": ["Markdown", "编辑器", "写作", "Win"]
         },
+        {
+          "title": "Fiddler开发者实用工具",
+          "function": "HTTP调试工具",
+          "txt":"Fiddler.txt",
+          "toD": "https://www.123pan.com/s/Vjqdjv-JzoVH.html",
+          "cover": "https://d585tldpucybw.cloudfront.net/sfimages/default-source/homepage/deliver.png?sfvrsn=cfc94f36_5",
+          "official": "https://www.telerik.com/fiddler",
+          "tags": ["调试工具", "HTTP", "Fiddler", "Win"]
+        },        
         {
           "title": "Filmora Pro版本",
           "function": "视频剪辑",
