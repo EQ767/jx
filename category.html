@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eric精选 - 分类详情</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .resource {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resource:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .resource-details {
+            flex: 1;
+        }
+
+        .resource-details h3 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+            font-size: 1.5em;
+        }
+
+        .resource-details p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .resource-details a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .resource-details a:hover {
+            color: #2980b9;
+        }
+
+        .tags {
+            margin-top: 10px;
+        }
+
+        .tags span {
+            background-color: #f1f1f1;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                margin-top: 30px;
+            }
+
+            .resource {
+                padding: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .resource img {
+                width: 100px;
+                height: 100px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .resource-details h3 {
+                font-size: 1.3em;
+            }
+
+            .resource-details p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .resource-details h3 {
+                font-size: 1.2em;
+            }
+
+            .resource-details p {
+                font-size: 0.9em;
+            }
+
+            .resource img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Search Box Style */
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #search-input {
+            width: 50%;
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        #search-input:focus {
+            border-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <h1 id="category-title">分类详情</h1>
+
+    <!-- Search Box -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="搜索资源..." onkeyup="searchResources()" />
+    </div>
+
+    <div id="resources"></div>
+
+    <script>
+        let data = [];
+
+        fetch('jx.json')
+            .then(response => response.json())
+            .then(fetchedData => {
+                data = fetchedData.resources; // 存储资源数据
+                const params = new URLSearchParams(window.location.search);
+                const index = params.get('index');
+
+                if (index === null || index >= data.length) {
+                    document.getElementById('category-title').textContent = '分类不存在';
+                } else {
+                    const resource = data[index];
+                    document.getElementById('category-title').textContent = `${resource.category} - ${resource.title}`;
+                    displayResources(resource.items);
+                }
+            })
+            .catch(error => {
+                console.error('加载JSON文件失败:', error);
+            });
+
+        // 根据输入的关键字过滤资源
+        function searchResources() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filteredData = data.flatMap(resource =>
+                resource.items.filter(item =>
+                    item.title.toLowerCase().includes(query) ||
+                    item.function.toLowerCase().includes(query) ||
+                    (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)))
+                )
+            );
+
+            displayResources(filteredData);
+        }
+
+        // 显示资源
+        function displayResources(items) {
+            const resourcesDiv = document.getElementById('resources');
+            const itemsHTML = items.map(item => {
+                return `
+                    <div class="resource">
+                        <a href="Introduce.html?i=${encodeURIComponent(item.title)}" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                            ${item.cover ? `<img src="${item.cover}" alt="${item.title}">` : ''}
+                            <div class="resource-details">
+                                <h3>${item.title}</h3>
+                                <p><strong>功能：</strong>${item.function}</p>
+                                <p><strong>下载链接：</strong><a href="${item.toD}" target="_blank">点击下载</a></p>
+                                ${item.official ? `<p><strong>官方网站：</strong><a href="${item.official}" target="_blank">${item.official}</a></p>` : ''}
+                                ${item.tags && item.tags.length > 0 ? `<div class="tags">${item.tags.map(tag => `<span>${tag}</span>`).join('')}</div>` : ''}
+                            </div>
+                        </a>
+                    </div>
+                `;
+            }).join('');
+            resourcesDiv.innerHTML = itemsHTML;
+        }
+    </script>
+</body>
+</html>

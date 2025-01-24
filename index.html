@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eric精选 - 首页</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .category {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category h2 {
+            font-size: 1.8em;
+            margin: 0;
+            color: #3498db;
+        }
+
+        .category a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .category a:hover {
+            color: #2980b9;
+        }
+
+        .category p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                margin-top: 30px;
+            }
+
+            .category {
+                padding: 15px;
+            }
+
+            .category h2 {
+                font-size: 1.5em;
+            }
+
+            .category p {
+                font-size: 1em;
+            }
+        }
+
+        /* 更小屏幕优化 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .category {
+                padding: 10px;
+            }
+
+            .category h2 {
+                font-size: 1.3em;
+            }
+
+            .category p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>资源博客</h1>
+    <div id="categories" style="padding: 0 20px;"></div>
+
+    <script>
+        fetch('jx.json')
+            .then(response => response.json())
+            .then(data => {
+                const categoriesDiv = document.getElementById('categories');
+                const resources = data.resources;
+
+                const categoryHTML = resources.map((resource, index) => {
+                    return `
+                        <div class="category">
+                            <h2><a href="category.html?index=${index}">${resource.category}</a></h2>
+                            <p>${resource.title}</p>
+                        </div>
+                    `;
+                }).join('');
+
+                categoriesDiv.innerHTML = categoryHTML;
+            })
+            .catch(error => {
+                console.error('加载JSON文件失败:', error);
+            });
+    </script>
+</body>
+</html>

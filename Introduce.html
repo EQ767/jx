@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eric精选 - 应用详情</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        .back-link:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .function, .download, .official {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .function strong, .download strong, .official strong {
+            color: #3498db;
+        }
+
+        .tags {
+            margin-top: 30px;
+        }
+
+        .tags span {
+            background-color: #ecf0f1;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #7f8c8d;
+        }
+
+        .description {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #7f8c8d;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .back-link {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-link">← 返回上页</a>
+    <div class="content">
+        <h1 class="title" id="title">加载中...</h1>
+        <p class="function" id="function"></p>
+        <p class="download" id="download"></p>
+        <p class="official" id="official"></p>
+        <div class="tags" id="tags"></div>
+        <div class="description" id="description"></div>
+    </div>
+
+    <script>
+        // 获取URL参数
+        const params = new URLSearchParams(window.location.search);
+        const titleParam = params.get('i');
+
+        if (!titleParam) {
+            document.getElementById('content').innerHTML = '<p>无效的资源请求。</p>';
+        } else {
+            // 解码标题
+            const decodedTitle = decodeURIComponent(titleParam);
+
+            // 加载JSON数据
+            fetch('jx.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 寻找匹配的资源项
+                    const foundItem = data.resources.flatMap(category => category.items)
+                        .find(item => item.title === decodedTitle);
+
+                    if (!foundItem) {
+                        document.getElementById('content').innerHTML = '<p>未找到该资源的详细信息。</p>';
+                        return;
+                    }
+
+                    // 更新页面内容
+                    document.getElementById('title').textContent = foundItem.title;
+                    document.getElementById('function').innerHTML = `<strong>功能：</strong>${foundItem.function}`;
+                    document.getElementById('download').innerHTML = `<strong>下载链接：</strong><a href="${foundItem.toD}" target="_blank">点击下载</a>`;
+                    if (foundItem.official) {
+                        document.getElementById('official').innerHTML = `<strong>官方网站：</strong><a href="${foundItem.official}" target="_blank">${foundItem.official}</a>`;
+                    }
+
+                    if (foundItem.tags && foundItem.tags.length > 0) {
+                        const tagsDiv = document.getElementById('tags');
+                        foundItem.tags.forEach(tag => {
+                            const tagSpan = document.createElement('span');
+                            tagSpan.textContent = tag;
+                            tagsDiv.appendChild(tagSpan);
+                        });
+                    }
+
+                    // 加载详细描述文本
+                    fetch(foundItem.txt)
+                        .then(response => response.text())
+                        .then(text => {
+                            document.getElementById('description').textContent = text;
+                        })
+                        .catch(error => {
+                            console.error('加载详细描述失败:', error);
+                            document.getElementById('description').textContent = '详细描述加载失败。';
+                        });
+                })
+                .catch(error => {
+                    console.error('加载JSON文件失败:', error);
+                    document.getElementById('content').innerHTML = '<p>加载资源信息时出错。</p>';
+                });
+        }
+    </script>
+</body>
+</html>
