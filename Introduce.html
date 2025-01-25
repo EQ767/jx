@@ -196,7 +196,11 @@
                         .then(response => response.text())
                         .then(text => {
                             // 将文本插入到指定位置并保持格式
-                            document.getElementById('description').innerHTML = `<div class="txt-content">${text}</div>`;
+                            // 替换 https 开头的链接为可点击的链接
+                            const modifiedText = text.replace(/https?:\/\/[^\s]+/g, (url) => {
+                                return `<a href="${url}" target="_blank">点击前往</a>`;
+                            });
+                            document.getElementById('description').innerHTML = `<div class="txt-content">${modifiedText}</div>`;
                         })
                         .catch(error => {
                             console.error('加载详细描述失败:', error);
