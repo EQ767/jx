@@ -10,7 +10,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f1f1f1;
             color: #333;
         }
 
@@ -19,36 +19,43 @@
             margin-bottom: 20px;
             color: #2c3e50;
             font-weight: bold;
+            text-align: center;
         }
 
         .back-link {
             display: inline-block;
             margin-bottom: 30px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #3498db;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .back-link:hover {
             background-color: #2980b9;
-            text-decoration: none;
+            transform: translateY(-3px);
         }
 
         .content {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .content:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .function, .download, .official {
             font-size: 1.1em;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.8;
         }
 
@@ -58,16 +65,23 @@
 
         .tags {
             margin-top: 30px;
+            text-align: center;
         }
 
         .tags span {
             background-color: #ecf0f1;
             padding: 8px 15px;
             border-radius: 20px;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            margin-right: 12px;
+            margin-bottom: 12px;
             font-size: 1em;
             color: #7f8c8d;
+            transition: background-color 0.3s ease;
+        }
+
+        .tags span:hover {
+            background-color: #3498db;
+            color: white;
         }
 
         .description {
@@ -80,16 +94,22 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .content {
-                padding: 15px;
+                padding: 20px;
             }
             h1 {
                 font-size: 2em;
             }
             .back-link {
                 font-size: 1em;
-                padding: 8px 15px;
+                padding: 10px 20px;
             }
         }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
     </style>
 </head>
 <body>
