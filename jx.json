@@ -137,7 +137,7 @@
           "toD": "https://ghproxy.net/https://github.com/Predidit/oneAnime/releases/download/1.3.7/oneAnime_android_1.3.7.apk",
           "cover": "one.jpeg",
           "official": "https://github.com/Predidit/oneAnime",
-          "tags": ["动漫", "平台", "Win", "安卓"]
+          "tags": ["动漫", "Win", "安卓"]
         },
         {
           "title": "荐片App免费看视频",
@@ -146,7 +146,7 @@
           "toD": "https://steveeric.lanzoui.com/b00mp3octc",
           "cover": "https://www.jianpian14.com/favicon.ico",
           "official": "https://www.jianpian9.com",
-          "tags": ["影视", "平台", "Win", "安卓", "密码:EqZy"]
+          "tags": ["影视", "Win", "安卓", "密码:EqZy"]
         }        
       ]
     }
