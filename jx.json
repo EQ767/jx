@@ -81,6 +81,15 @@
           "cover": "VP.png",
           "official": "https://vpot.fun/",
           "tags": ["文字转语音", "工具", "Windows"]
+        },
+        {
+          "title": "Seal媒体下载器",
+          "function": "页面媒体资源下载",
+          "txt":"Seal.txt",
+          "toD": "https://steveeric.lanzoui.com/b00mp3o57i",
+          "cover": "https://i-1-92sucai.53tup.com/2024/5/8/ce227f87-a415-45f3-b882-ea9b44e258d3.png",
+          "official": "https://github.com/JunkFood02/Seal",
+          "tags": ["媒体下载", "工具", "安卓", "密码:EqZy"]
         }
       ]
     },
