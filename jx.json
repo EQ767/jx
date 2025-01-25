@@ -138,7 +138,16 @@
           "cover": "one.jpeg",
           "official": "https://github.com/Predidit/oneAnime",
           "tags": ["动漫", "平台", "Win", "安卓"]
-        }
+        },
+        {
+          "title": "荐片App免费看视频",
+          "function": "影视观看平台",
+          "txt":"JP.txt",
+          "toD": "https://steveeric.lanzoui.com/b00mp3octc",
+          "cover": "https://www.jianpian14.com/favicon.ico",
+          "official": "https://www.jianpian9.com",
+          "tags": ["影视", "平台", "Win", "安卓", "密码:EqZy"]
+        }        
       ]
     }
   ]
