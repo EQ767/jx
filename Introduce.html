@@ -91,6 +91,30 @@
             color: #7f8c8d;
         }
 
+        /* 用于展示txt文件的样式 */
+        .txt-content {
+            white-space: pre-wrap; /* 保持换行符 */
+            word-wrap: break-word; /* 防止长单词溢出 */
+            max-width: 100%; /* 确保内容不会超出容器 */
+            overflow-wrap: break-word;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            color: #2c3e50;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* 嵌入Discuss.html的iframe */
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .content {
@@ -121,6 +145,9 @@
         <p class="official" id="official"></p>
         <div class="tags" id="tags"></div>
         <div class="description" id="description"></div>
+
+        <!-- 嵌入 Discuss.html -->
+        <iframe src="Discuss.html" title="讨论区"></iframe>
     </div>
 
     <script>
@@ -168,7 +195,8 @@
                     fetch(foundItem.txt)
                         .then(response => response.text())
                         .then(text => {
-                            document.getElementById('description').textContent = text;
+                            // 将文本插入到指定位置并保持格式
+                            document.getElementById('description').innerHTML = `<div class="txt-content">${text}</div>`;
                         })
                         .catch(error => {
                             console.error('加载详细描述失败:', error);
