@@ -4,29 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discuss | 评论</title>
+    <style>
+        /* 通用样式 */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        /* 设置切换按钮的样式 */
+        .toggle-buttons {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-buttons button {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .comment-system {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .toggle-buttons {
+                flex-direction: column;
+            }
+
+            .toggle-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- 你的网页内容 -->
-    <h2>Discuss<h2>
-    <div id="giscus"></div>
+    <h2>Discuss</h2>
 
-    <!-- Giscus 脚本 -->
-    <script src="https://giscus.app/client.js"
-            data-repo="EQ767/jx"
-            data-repo-id="R_kgDONu-lMQ"
-            data-category="General"
-            data-category-id="DIC_kwDONu-lMc4CmVL2"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="top"
-            data-theme="fro"
-            data-lang="zh-CN"
-            data-loading="lazy"
-            crossorigin="anonymous"
-            async>
+    <!-- 切换按钮 -->
+    <div class="toggle-buttons">
+        <button onclick="showSystem('livere')">系统1(国内快速)</button>
+        <button onclick="showSystem('giscus')">系统2</button>
+    </div>
+
+    <div id="livere" class="comment-system">
+        <div id="lv-container" data-id="city" data-uid="MTAyMC82MDM5NS8zNjg2NQ==">
+            <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+        <script type="text/javascript" async>
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+
+                if (typeof LivereTower === 'function') { return; }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+    </div>
+
+    <div id="giscus" class="comment-system">
+        <div id="giscus-container"></div>
+        <script src="https://giscus.app/client.js"
+                data-repo="EQ767/jx"
+                data-repo-id="R_kgDONu-lMQ"
+                data-category="General"
+                data-category-id="DIC_kwDONu-lMc4CmVL2"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="fro"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+
+    <script>
+        /**
+         * 显示选定的评论系统，并隐藏其他系统
+         * @param {string} system - 要显示的评论系统的ID
+         */
+        function showSystem(system) {
+            document.querySelectorAll('.comment-system').forEach(function(el) {
+                el.classList.remove('active');
+            });
+
+            document.getElementById(system).classList.add('active');
+        }
+
+        // 页面加载完成后默认显示来必力City版评论系统
+        document.addEventListener('DOMContentLoaded', function() {
+            showSystem('livere');
+        });
     </script>
 
 </body>
