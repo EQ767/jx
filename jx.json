@@ -149,6 +149,30 @@
           "tags": ["影视", "Win", "安卓"]
         }        
       ]
+    },
+    {
+      "category": "小工具",
+      "title": "无聊自造小工具",
+      "items": [
+        {
+          "title": "APK图标工具",
+          "function": "快速获取APK文件的图标封面",
+          "txt":"APK.txt",
+          "toD": "https://steveeric.lanzouo.com/b00mp4u6va",
+          "cover": "https://roonby.com/wp-content/uploads/2016/06/apk-1.png",
+          "official": "https://eq767.github.io",
+          "tags": ["icon", "Win", "工具"]
+        },
+        {
+          "title": "EXE图标工具",
+          "function": "获取EXE图标封面",
+          "txt":"EXE.txt",
+          "toD": "https://steveeric.lanzouo.com/b00mp4vvid",
+          "cover": "https://sistemas.com/termino/wp-content/uploads/exe.jpg",
+          "official": "https://eq767.github.io",
+          "tags": ["icon", "Win", "工具"]
+        }        
+      ]
     }
   ]
 }
