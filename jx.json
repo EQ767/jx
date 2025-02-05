@@ -177,9 +177,18 @@
           "function": "格式转换工具",
           "txt":"h.txt",
           "toD": "https://steveeric.lanzouo.com/b00mp4whtg",
-          "cover": "http://pic.9663.com/upload/2023-3/20233201049542172.jpg",
+          "cover": "http://www.23etool.com/static/img/Tools.png",
           "official": "https://eq767.github.io",
           "tags": ["icon", "Win", "工具"]
+        },
+        {
+          "title": "聊天工具",
+          "function": "方便的内网聊天工具",
+          "txt":"chat.txt",
+          "toD": "https://steveeric.lanzouo.com/b00mp52o5a",
+          "cover": "https://static.vecteezy.com/system/resources/previews/005/337/802/original/icon-symbol-chat-outline-illustration-free-vector.jpg",
+          "official": "https://eq767.github.io",
+          "tags": ["聊天", "Win", "内网"]
         }
       ]
     }
